@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { Activity, Heart, Droplet, Scale, Clock, Calendar } from 'lucide-react-native';
+import { Calendar, Clock } from 'lucide-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePathname } from 'expo-router';
 import { DOCTORS, Doctor } from '../constants/doctors';
@@ -22,62 +22,39 @@ interface Appointment {
 }
 
 export default function Dashboard() {
-  const username = "Sumit";
+  const username = "Ishant kumar";
   // Patient ID in the new format
-  const uniqueId = "SUM-20060410-001";
+  const uniqueId = "ISH-20051225-003";
   const pathname = usePathname();
   
   const [recentReports, setRecentReports] = useState([
     {
       name: "Blood Test Report",
-      date: "15 Mar 2024",
+      date: "19 Jan 2025",
       status: "Normal"
     },
     {
       name: "ECG Report",
-      date: "10 Mar 2024",
+      date: "17 Jan 2025",
       status: "Review Required"
     },
     {
       name: "Chest X-Ray",
-      date: "5 Mar 2024",
+      date: "17 Jan 2025",
       status: "Normal"
     }
   ]);
 
   const [bookedAppointments, setBookedAppointments] = useState<Appointment[]>([]);
-  
-  const healthData = {
-    bloodPressure: {
-      systolic: 120,
-      diastolic: 80,
-      lastChecked: '2 hours ago'
-    },
-    heartRate: {
-      current: 72,
-      average: 75,
-      lastChecked: '30 mins ago'
-    },
-    bloodSugar: {
-      value: 95,
-      status: 'Normal',
-      lastChecked: '3 hours ago'
-    },
-    weight: {
-      current: 70,
-      change: -0.5,
-      lastChecked: '1 day ago'
-    }
-  };
 
   const upcomingAppointments = [
     {
-      doctor: "Dr. Sarah Johnson",
+      doctor: "Dr. Dinesh chilke",
       specialty: "Cardiologist",
       date: "Tomorrow, 10:00 AM"
     },
     {
-      doctor: "Dr. Michael Lee",
+      doctor: "Dr. Manju sanghi",
       specialty: "General Physician",
       date: "Next Week, Tuesday"
     }
@@ -144,50 +121,6 @@ export default function Dashboard() {
           <Text style={styles.idValue}>{uniqueId}</Text>
         </View>
         <Text style={styles.subtitle}>Here's your health summary</Text>
-      </View>
-
-      <View style={styles.healthMetricsContainer}>
-        <View style={styles.healthCard}>
-          <View style={styles.healthCardHeader}>
-            <Heart size={24} color="#ef4444" />
-            <Text style={styles.lastChecked}>{healthData.heartRate.lastChecked}</Text>
-          </View>
-          <Text style={styles.metricValue}>{healthData.heartRate.current}</Text>
-          <Text style={styles.metricLabel}>Heart Rate (BPM)</Text>
-          <Text style={styles.metricSubtext}>Avg: {healthData.heartRate.average} BPM</Text>
-        </View>
-
-        <View style={styles.healthCard}>
-          <View style={styles.healthCardHeader}>
-            <Activity size={24} color="#2563eb" />
-            <Text style={styles.lastChecked}>{healthData.bloodPressure.lastChecked}</Text>
-          </View>
-          <Text style={styles.metricValue}>{healthData.bloodPressure.systolic}/{healthData.bloodPressure.diastolic}</Text>
-          <Text style={styles.metricLabel}>Blood Pressure</Text>
-          <Text style={styles.metricSubtext}>Normal Range</Text>
-        </View>
-
-        <View style={styles.healthCard}>
-          <View style={styles.healthCardHeader}>
-            <Droplet size={24} color="#7c3aed" />
-            <Text style={styles.lastChecked}>{healthData.bloodSugar.lastChecked}</Text>
-          </View>
-          <Text style={styles.metricValue}>{healthData.bloodSugar.value}</Text>
-          <Text style={styles.metricLabel}>Blood Sugar</Text>
-          <Text style={styles.metricSubtext}>{healthData.bloodSugar.status}</Text>
-        </View>
-
-        <View style={styles.healthCard}>
-          <View style={styles.healthCardHeader}>
-            <Scale size={24} color="#059669" />
-            <Text style={styles.lastChecked}>{healthData.weight.lastChecked}</Text>
-          </View>
-          <Text style={styles.metricValue}>{healthData.weight.current}</Text>
-          <Text style={styles.metricLabel}>Weight (kg)</Text>
-          <Text style={[styles.metricSubtext, healthData.weight.change < 0 ? styles.decreaseText : styles.increaseText]}>
-            {healthData.weight.change > 0 ? '+' : ''}{healthData.weight.change} kg
-          </Text>
-        </View>
       </View>
 
       <View style={styles.section}>
@@ -298,51 +231,6 @@ const styles = StyleSheet.create({
     color: '#0ea5e9',
     fontWeight: '500',
     fontFamily: 'monospace',
-  },
-  healthMetricsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: 12,
-    gap: 12,
-  },
-  healthCard: {
-    backgroundColor: '#fff',
-    borderRadius: 16,
-    padding: 16,
-    width: '47%',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.05,
-    shadowRadius: 15,
-    elevation: 2,
-  },
-  healthCardHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  lastChecked: {
-    fontSize: 12,
-    color: '#64748b',
-  },
-  metricValue: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1e293b',
-    marginBottom: 4,
-  },
-  metricLabel: {
-    fontSize: 14,
-    color: '#64748b',
-    marginBottom: 4,
-  },
-  metricSubtext: {
-    fontSize: 12,
-    color: '#64748b',
   },
   section: {
     padding: 20,

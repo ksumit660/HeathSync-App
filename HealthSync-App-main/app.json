@@ -29,6 +29,12 @@
     "experiments": {
       "tsconfigPaths": true
     },
-    "newArchEnabled": true
+    "newArchEnabled": true,
+    "extra": {
+      "eas": {
+        "projectId": "55a2bb72-28f2-4b81-9188-3b90efca7712"
+      }
+    },
+    "owner": "sumit10042006"
   }
 }
